@@ -1,0 +1,28 @@
+# Temporary directories
+temp/
+temp3/
+tmp/
+
+# Credentials (never commit)
+credentials/
+*.credentials
+connection-info.txt
+
+# macOS
+.DS_Store
+*.swp
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# Logs
+*.log
+
+# OpenSpec (internal tooling)
+openspec/
+.opencode/
+.github/copilot-instructions.md
+.github/prompts/
+.github/skills/
