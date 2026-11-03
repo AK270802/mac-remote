@@ -1,0 +1,100 @@
+{
+  "tiers": {
+    "standard": {
+      "runner_pattern": "macos-{version}",
+      "vcpu": 3,
+      "ram_gb": 7,
+      "arch": "arm64",
+      "chip": "M1",
+      "plans": ["free", "pro", "team", "enterprise"],
+      "description": "Standard ARM64 runner - available for all plans"
+    },
+    "intel": {
+      "runner_pattern": "macos-{version}-intel",
+      "available_versions": ["26"],
+      "vcpu": 4,
+      "ram_gb": 14,
+      "arch": "x64",
+      "chip": "Intel Xeon",
+      "plans": ["free", "pro", "team", "enterprise"],
+      "description": "Standard Intel x64 runner - macOS 26+ only"
+    },
+    "large": {
+      "runner_pattern": "macos-{version}-large",
+      "vcpu": 12,
+      "ram_gb": 30,
+      "arch_by_version": {
+        "14": "arm64",
+        "15": "arm64",
+        "26": "x64"
+      },
+      "chip_by_version": {
+        "14": "M1 Pro",
+        "15": "M1 Pro",
+        "26": "Intel Xeon"
+      },
+      "plans": ["team", "enterprise"],
+      "description": "Large runner - requires Team or Enterprise plan. NOTE: macOS 26 large runs on Intel x64, not ARM"
+    },
+    "xlarge": {
+      "runner_pattern": "macos-{version}-xlarge",
+      "vcpu_by_version": {
+        "14": 24,
+        "15": 24,
+        "26": 5
+      },
+      "ram_gb_by_version": {
+        "14": 70,
+        "15": 70,
+        "26": 14
+      },
+      "gpu_by_version": {
+        "14": null,
+        "15": null,
+        "26": "8-core GPU"
+      },
+      "arch": "arm64",
+      "chip_by_version": {
+        "14": "M1 Max",
+        "15": "M1 Max",
+        "26": "M2"
+      },
+      "plans": ["enterprise"],
+      "description": "Extra large runner - requires Enterprise plan"
+    }
+  },
+  "versions": {
+    "14": {
+      "name": "Sonoma",
+      "status": "GA",
+      "available_tiers": ["standard", "large", "xlarge"]
+    },
+    "15": {
+      "name": "Sequoia",
+      "status": "GA",
+      "available_tiers": ["standard", "large", "xlarge"]
+    },
+    "26": {
+      "name": "Tahoe",
+      "status": "GA",
+      "available_tiers": ["standard", "intel", "large", "xlarge"]
+    }
+  },
+  "limits": {
+    "max_session_hours": 6,
+    "default_session_hours": 2,
+    "keepalive_interval_minutes": 5,
+    "warning_before_end_minutes": [15, 5],
+    "max_chains": 3
+  },
+  "tunnels": {
+    "cloudflared": {
+      "priority": 1,
+      "description": "Free, no limits, no account required"
+    },
+    "ngrok": {
+      "priority": 2,
+      "description": "Free tier has limits, requires account for more"
+    }
+  }
+}
